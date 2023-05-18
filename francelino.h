@@ -106,20 +106,20 @@ void performKMeans(Point points[], Centroid centroids[]) {
         }
         printf("\n");
 
-        usleep(1000000);  // Pausa de 1 segundo entre iterações
+        usleep(1000000);  // Pausa de 1 segundo (requer a biblioteca <unistd.h>)
     }
 
     printf("Número de iterações: %d\n", iteration);
 }
 
-void writeCentroidsToFile(Centroid centroids[]) {
-    FILE *file = fopen("centroide_resultado.csv", "w");
+void writeCentroidResults(Centroid centroids[]) {
+    FILE *file = fopen("centroid_resultado.csv", "w");
     if (file == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
+        printf("Erro ao criar o arquivo.\n");
+        return;
     }
 
-    fprintf(file, "Centroide,X,Y\n");
+    fprintf(file, "id,x,y\n");
     for (int j = 0; j < NUM_CLUSTERS; j++) {
         fprintf(file, "%d,%lf,%lf\n", j + 1, centroids[j].x, centroids[j].y);
     }
@@ -131,40 +131,11 @@ int main() {
     Point points[NUM_POINTS];
     Centroid centroids[NUM_CLUSTERS];
 
-    // Criação de uma cópia dos arquivos com as coordenadas iniciais dos pontos e centroides
-    FILE *pointsFile = fopen("df_test.csv", "r");
-    FILE *centroidsFile = fopen("centroide_test.csv", "r");
-    FILE *pointsCopyFile = fopen("df_test_copy.csv", "w");
-    FILE *centroidsCopyFile = fopen("centroide_test_copy.csv", "w");
-
-    if (pointsFile == NULL || centroidsFile == NULL || pointsCopyFile == NULL || centroidsCopyFile == NULL) {
-        printf("Erro ao abrir os arquivos.\n");
-        exit(1);
-    }
-
-    char line[100];
-    while (fgets(line, sizeof(line), pointsFile)) {
-        fputs(line, pointsCopyFile);
-    }
-
-    while (fgets(line, sizeof(line), centroidsFile)) {
-        fputs(line, centroidsCopyFile);
-    }
-
-    fclose(pointsFile);
-    fclose(centroidsFile);
-    fclose(pointsCopyFile);
-    fclose(centroidsCopyFile);
-
-    // Leitura dos dados
     readData(points, centroids);
 
-    // Execução do algoritmo K-means
     performKMeans(points, centroids);
 
-    // Gravar os centroides em um arquivo
-    writeCentroidsToFile(centroids);
+    writeCentroidResults(centroids);
 
     return 0;
 }
-
