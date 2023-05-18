@@ -10,6 +10,10 @@
 // - IGÓ FERREIRA MELO SILVA (20220155214)
 /*---------------------------------------------------------*/
 #include <stdio.h>
+#include "davi.h"
+#include "francelino.h"
+#include "guilherme.h"
+#include "igo.h"
 
 int main(void) {
   printf("K-Means\n");
