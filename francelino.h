@@ -1,6 +1,6 @@
-#ifndef _francelino_H_
-#define _francelino_H_ 
-
+#ifndef _FRANCELINO_H_
+#define _FRANCELINO_H_ 
+/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -139,3 +139,6 @@ int main() {
 
     return 0;
 }
+*/
+
+#endif

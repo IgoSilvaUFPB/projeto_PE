@@ -1,5 +1,5 @@
-#ifndef _guilherme_H_
-#define _guilherme_H_ 
+#ifndef _GUILHERME_H_
+#define _GUILHERME_H_ 
 
 //Sua área de trabalho
 
@@ -11,3 +11,5 @@ Além dos pontos e dos centroides, também deverá ser representada a atribuíç
 Inicialmente ninguém é de ninguém, mas a cada iteração os pontos serão atribuídos a um centroide.
 Isso é importante mostrar para ver como as coisas transcorreram.
 */
+
+#endif

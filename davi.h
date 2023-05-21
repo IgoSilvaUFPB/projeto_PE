@@ -1,5 +1,5 @@
-#ifndef _davi_H_
-#define _davi_H_ 
+#ifndef _DAVI_H_
+#define _DAVI_H_ 
 
 //Sua área de trabalho
 
@@ -14,3 +14,5 @@ mas no mesmo esquema do gerador_csv_cluster.ipynb que está no repositório.
 Deixando os pontos concentrados em 3 regiões do gráfico.
 E salvar em um arquivo CSV no mesmo formato do df_test.csv.
 */
+
+#endif
