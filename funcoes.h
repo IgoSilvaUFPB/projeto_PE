@@ -4,7 +4,7 @@
 #define MAX_LINE_LENGTH 100
 
 // Plota o gráfico
-void plotPointsWithCentroids(int iteration) {
+void plotagem(int iteration) {
     FILE *points = fopen(ARQUIVO_PONTOS, "r");
     FILE *centroids = fopen(ARQUIVO_CENTROIDES, "r");
 
@@ -53,12 +53,12 @@ void plotPointsWithCentroids(int iteration) {
 }
 
 // Calcula a distância entre os pontos e os centroides
-double distance(Point points, Centroid centroids) {
+double distancia(Point points, Centroid centroids) {
     return sqrt(pow(points.x - centroids.x, 2) + pow(points.y - centroids.y, 2));
 }
 
 // Carrega dados dos arquivos csv
-void readData(Point points[], Centroid centroids[]) {    
+void carregaDados(Point points[], Centroid centroids[]) {    
     // Carrega dados dos pontos
     FILE *pontos = fopen(ARQUIVO_PONTOS, "r");
     if (pontos == NULL) {
@@ -87,13 +87,13 @@ void readData(Point points[], Centroid centroids[]) {
 }
 
 // Associa os pontos aos centroides mais próximos
-void assignPointsToClosestCentroids(Point points[], Centroid centroids[]) {
+void associaPontosaosCentroides(Point points[], Centroid centroids[]) {
     for (int i = 0; i < NUM_POINTS; i++) {
         double minDistance = INFINITY;
         int closestCentroid = 0;
 
         for (int j = 0; j < NUM_CLUSTERS; j++) {
-            double d = distance(points[i], centroids[j]);
+            double d = distancia(points[i], centroids[j]);
             if (d < minDistance) {
                 minDistance = d;
                 closestCentroid = j;
@@ -104,7 +104,7 @@ void assignPointsToClosestCentroids(Point points[], Centroid centroids[]) {
 }
 
 // Atualiza a posição dos centroides
-void updateCentroids(Point points[], Centroid centroids[]) {
+void atualizaPosicaoCentroides(Point points[], Centroid centroids[]) {
     // Zera as posições dos centroides
     for (int k = 0; k < NUM_CLUSTERS; k++) {        
         centroids[k].sumx = 0;

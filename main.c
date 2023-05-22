@@ -1,5 +1,5 @@
 /*---------------------------------------------------------*/
-//Univerdide Federal da Paraíba - UFPB
+//Universidade Federal da Paraíba - UFPB
 //Curso: Ciência de Dados e Inteligência Artificial
 //Disciplina: Programação Estruturada
 //Projeto: Implementação do algoritmo K-Means na linguagem C
@@ -62,32 +62,32 @@ int main() {
     int iteration;
 
     // Plota o gráfico na condição inicial
-    plotPointsWithCentroids(0);
+    plotagem(0);
 
     // Pausa para visualização
     pausa();
 
     for (iteration = 0; iteration < MAX_ITERATIONS; iteration++) {       
         
-        //Carrega dados dos arquivos csv
-        readData(points, centroids);
+        // Carrega dados dos arquivos csv
+        carregaDados(points, centroids);
 
-        //Associa os pontos aos centroides mais próximos
-        assignPointsToClosestCentroids(points, centroids);
+        // Associa os pontos aos centroides mais próximos
+        associaPontosaosCentroides(points, centroids);
 
-        //Atualiza a posição dos centroides
-        updateCentroids(points, centroids);
+        // Atualiza a posição dos centroides
+        atualizaPosicaoCentroides(points, centroids);
 
-        //Atualiza o arquivo dos pontos
+        // Atualiza o arquivo dos pontos
         atualizaPontos (points);
 
-        //Atualiza o arquivo dos centroides
+        // Atualiza o arquivo dos centroides
         atualizaCentroides (centroids);
 
-        //Chamada da função que plota os gráficos a cada iteração
-        plotPointsWithCentroids(iteration+1);
+        // Plota o gráfico
+        plotagem(iteration+1);
 
-        //Pausa para visualização
+        // Pausa para visualização
         pausa();
     }
     return 0;
