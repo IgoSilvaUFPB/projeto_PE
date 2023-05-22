@@ -163,54 +163,67 @@ void atualizaCentroides (Centroid centroids[]){
     fclose(centroides);
 }
 
-void resetaArquivos(Point points[], Centroid centroids[]) {    
-    // Carrega dados dos pontos de teste
-    FILE *pontosteste = fopen("df_test.csv", "r");    
-    if (pontosteste == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
-    }
-    char line[100];
-    for (int i = 0; i < NUM_POINTS; i++) {
-        fgets(line, sizeof(line), pontosteste);
-        sscanf(line, "%d,%lf,%lf,%d", &points[i].id, &points[i].x, &points[i].y, &points[i].cluster);
-    }
-    fclose(pontosteste);
-
-    // Recupera os pontos de teste
+// Gera pontos
+void criaPontos() {
     FILE *pontos = fopen(ARQUIVO_PONTOS, "w");
     if (pontos == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
-    }
-    for (int i = 0; i < NUM_POINTS; i++) {
-        fprintf(pontos, "%d,%lf,%lf,%d\n", points[i].id, points[i].x, points[i].y, points[i].cluster);
-    }
-    fclose(pontos);
+        printf("Erro ao abrir os arquivo.\n");
+        return;
+    }    
 
-    // Carrega dados dos centroides de teste
-    FILE *centroidesteste = fopen("centroide_test.csv", "r");    
-    if (centroidesteste == NULL || pontos == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
-    }
-    char line2[100];
+    // Gera centros de agrupamentos
+    Point centroids[NUM_CLUSTERS];
     for (int i = 0; i < NUM_CLUSTERS; i++) {
-        fgets(line2, sizeof(line2), centroidesteste);
-        sscanf(line2, "%d,%lf,%lf", &centroids[i].id, &centroids[i].x, &centroids[i].y);
+        centroids[i].id = i + 1;
+        centroids[i].x = (float)(rand() % 1000) / 10.0;  // Coordenadas de referência - x entre 0 e 100
+        centroids[i].y = (float)(rand() % 1000) / 10.0;  // Coordenadas de referência - y entre 0 e 100
     }
-    fclose(centroidesteste);
 
-    // Recupera os centroides de teste
+    // Gera pontos aleatóriamente
+    Point points[NUM_POINTS];
+
+    for (int i = 0; i < NUM_POINTS; i++) {
+        int cluster = i % NUM_CLUSTERS;
+
+        points[i].id = i;
+        float radius = (float)(rand() % 19);  // Ajustar o raio para controlar o espalhamento
+        float angle = (float)(rand() % 360) * 3.1415 / 180.0;  // Ângulo aleatório em radianos
+        
+        points[i].x = centroids[cluster].x + radius * cos(angle);
+        points[i].y = centroids[cluster].y + radius * sin(angle);
+        points[i].cluster = 3;  // Centroide inicializa em 3
+    }
+
+    // Salva pontos no CSV
+    for (int i = 0; i < NUM_POINTS; i++) {
+        fprintf(pontos, "%d,%.2f,%.2f,%d\n", points[i].id, points[i].x, points[i].y, points[i].cluster);
+    }
+
+    fclose(pontos);
+}
+
+// Gera centroides
+void criaCentroides() {
     FILE *centroides = fopen(ARQUIVO_CENTROIDES, "w");
     if (centroides == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
+        printf("Erro ao abrir os arquivo.\n");
+        return;
     }
-    for (int j = 0; j < NUM_CLUSTERS; j++) {
-        fprintf(centroides, "%d,%lf,%lf\n", centroids[j].id, centroids[j].x, centroids[j].y);
+
+    // Gere centroides
+    Point centroids[NUM_CLUSTERS];
+    for (int i = 0; i < NUM_CLUSTERS; i++) {
+        centroids[i].id = i + 1;
+        centroids[i].x = (float)(rand() % 1000) / 10.0;  // Coordenadas x dos centroides entre 0 e 100
+        centroids[i].y = (float)(rand() % 1000) / 10.0;  // Coordenadas y dos centroides entre 0 e 100
+    }   
+
+    // Salva centroides no CSV
+    for (int i = 0; i < NUM_CLUSTERS; i++) {
+        fprintf(centroides, "%d,%.2f,%.2f\n", centroids[i].id, centroids[i].x, centroids[i].y);
     }
-    fclose(centroides); 
+
+    fclose(centroides);
 }
 
 #endif

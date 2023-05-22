@@ -16,6 +16,7 @@
 #include "igo.h"
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 #define MAX_ITERATIONS 5
 #define NUM_POINTS 200
@@ -43,21 +44,17 @@ typedef struct {
 
 int main() {
 
-    /*
-    Função que gera pontos iniciais
-    ??????
-    */
-
-    /*
-    Função que gera centroides iniciais
-    ?????
-    */
+    // Semente para geração de pontos e centroides
+    srand(time(NULL));    
 
     Point points[NUM_POINTS];
     Centroid centroids[NUM_CLUSTERS];
 
-    // Reseta os arquivos de teste
-    resetaArquivos(points, centroids);
+    //Gera pontos
+    criaPontos();
+
+    //Gera centroides
+    criaCentroides();
 
     int iteration;
 
