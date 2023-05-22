@@ -18,7 +18,7 @@
 #include <math.h>
 #include <time.h>
 
-#define MAX_ITERATIONS 5
+#define MAX_ITERATIONS 10
 #define NUM_POINTS 200
 #define NUM_CLUSTERS 3
 #define ARQUIVO_PONTOS "pontos.csv"
@@ -56,15 +56,13 @@ int main() {
     //Gera centroides
     criaCentroides();
 
-    int iteration;
-
     // Plota o gráfico na condição inicial
     plotagem(0);
 
     // Pausa para visualização
     pausa();
 
-    for (iteration = 0; iteration < MAX_ITERATIONS; iteration++) {       
+    for (int iteration = 0; iteration < MAX_ITERATIONS; iteration++) {       
         
         // Carrega dados dos arquivos csv
         carregaDados(points, centroids);

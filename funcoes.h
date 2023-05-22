@@ -23,12 +23,15 @@ void plotagem(int iteration) {
     fprintf(gnuplotPipe, "set title 'Rodada %d'\n", iteration);
     fprintf(gnuplotPipe, "set xlabel 'X'\n");
     fprintf(gnuplotPipe, "set ylabel 'Y'\n");
-    fprintf(gnuplotPipe, "plot '-' using 1:2:3 with points lc variable pt 7 title 'Pontos', '-' using 1:2:3 with points lc variable pt 9 ps 4 title 'Centroides'\n");
+    fprintf(gnuplotPipe, "set key box linestyle 1 width 2 height 2 horizontal outside bottom center\n");
+    fprintf(gnuplotPipe, "plot '-' using 1:2:3 with points lc variable pt 7 title 'Pontos', \
+                                '-' using 1:2:3 with points lc variable pt 9 ps 5 title 'Centroides', \
+                                '-' using 1:2:3:4 with labels textcolor rgb 'black' notitle\n");
 
     // Lê e plota os pontos
     fprintf(gnuplotPipe, "# Pontos\n");
     float x, y;
-    int id, clu;
+    int id, clu, count;
     while (fscanf(points, "%d,%f,%f,%d", &id, &x, &y, &clu) == 4) {
         fprintf(gnuplotPipe, "%f %f %d\n", x, y, clu);
     }
@@ -36,13 +39,20 @@ void plotagem(int iteration) {
 
     // Lê e plota os centroides
     fprintf(gnuplotPipe, "# Centroides\n");
-    while (fscanf(centroids, "%d,%f,%f", &id, &x, &y) == 3) {
+    while (fscanf(centroids, "%d,%f,%f,%d", &id, &x, &y, &count) == 4) {
         fprintf(gnuplotPipe, "%f %f %d\n", x, y, id);
     }
     fprintf(gnuplotPipe, "e\n");
 
+    // Ler e plotar os rótulos dos centroides
+    fprintf(gnuplotPipe, "# Rótulos dos Centroides\n");
+    rewind(centroids);  // Volta ao início do arquivo de centroides
+    while (fscanf(centroids, "%d,%f,%f,%d", &id, &x, &y, &count) == 4) {
+        fprintf(gnuplotPipe, "%f %f %d %d\n", x, y, count, count);
+    }
+    fprintf(gnuplotPipe, "e\n");
+
     // Exibe o gráfico
-    fprintf(gnuplotPipe, "set terminal png\n");
     fprintf(gnuplotPipe, "set palette defined (0 'red', 1 'blue', 2 'green', 3 'black' )\n");
     fprintf(gnuplotPipe, "replot\n");
 
@@ -81,7 +91,7 @@ void carregaDados(Point points[], Centroid centroids[]) {
     char line2[100];
     for (int i = 0; i < NUM_CLUSTERS; i++) {
         fgets(line2, sizeof(line2), centroides);
-        sscanf(line2, "%d,%lf,%lf", &centroids[i].id, &centroids[i].x, &centroids[i].y);
+        sscanf(line2, "%d,%lf,%lf,%d", &centroids[i].id, &centroids[i].x, &centroids[i].y, &centroids[i].count);
     }    
     fclose(centroides);    
 }
@@ -98,6 +108,9 @@ void associaPontosaosCentroides(Point points[], Centroid centroids[]) {
                 minDistance = d;
                 closestCentroid = j;
             }
+        }
+        if(points[i].cluster != closestCentroid){
+            printf(".");
         }
         points[i].cluster = closestCentroid; // Altera o centroide associado ao ponto
     }
@@ -158,7 +171,7 @@ void atualizaCentroides (Centroid centroids[]){
     }
 
     for (int j = 0; j < NUM_CLUSTERS; j++) {
-        fprintf(centroides, "%d,%lf,%lf\n", centroids[j].id, centroids[j].x, centroids[j].y);
+        fprintf(centroides, "%d,%lf,%lf,%d\n", centroids[j].id, centroids[j].x, centroids[j].y, centroids[j].count);
     }
     fclose(centroides);
 }
@@ -211,16 +224,17 @@ void criaCentroides() {
     }
 
     // Gere centroides
-    Point centroids[NUM_CLUSTERS];
+    Centroid centroids[NUM_CLUSTERS];
     for (int i = 0; i < NUM_CLUSTERS; i++) {
         centroids[i].id = i + 1;
         centroids[i].x = (float)(rand() % 1000) / 10.0;  // Coordenadas x dos centroides entre 0 e 100
         centroids[i].y = (float)(rand() % 1000) / 10.0;  // Coordenadas y dos centroides entre 0 e 100
+        centroids[i].count = 0;
     }   
 
     // Salva centroides no CSV
     for (int i = 0; i < NUM_CLUSTERS; i++) {
-        fprintf(centroides, "%d,%.2f,%.2f\n", centroids[i].id, centroids[i].x, centroids[i].y);
+        fprintf(centroides, "%d,%.2f,%.2f,%d\n", centroids[i].id, centroids[i].x, centroids[i].y, centroids[i].count);
     }
 
     fclose(centroides);
