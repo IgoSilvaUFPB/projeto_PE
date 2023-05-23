@@ -22,10 +22,10 @@ void plotagem(int iteration) {
     fprintf(gnuplotPipe, "set title 'Rodada %d'\n", iteration);
     fprintf(gnuplotPipe, "set xlabel 'X'\n");
     fprintf(gnuplotPipe, "set ylabel 'Y'\n");
-    fprintf(gnuplotPipe, "set key box linestyle 1 width 2 height 2 horizontal outside bottom center\n");
-    fprintf(gnuplotPipe, "plot '-' using 1:2:3 with points lc variable pt 7 title 'Pontos', \
-                                '-' using 1:2:3 with points lc variable pt 9 ps 5 title 'Centroides', \
-                                '-' using 1:2:3:4 with labels textcolor rgb 'black' notitle\n");
+    fprintf(gnuplotPipe, "set key box linestyle 2 width 2 height 2 spacing 1 horizontal outside bottom center\n");
+    fprintf(gnuplotPipe, "plot '-' using 1:2:3 with points lc variable pt 7 title 'PONTOS', \
+                                '-' using 1:2:3 with points lc variable pt 9 ps 5 title 'CENTROIDES', \
+                                '-' using 1:2:3:4 with labels textcolor rgb 'white' notitle\n");
 
     // Lê e plota os pontos
     fprintf(gnuplotPipe, "# Pontos\n");

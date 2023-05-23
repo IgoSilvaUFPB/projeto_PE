@@ -20,7 +20,7 @@
 
 #define MAX_ITERATIONS 15
 #define NUM_POINTS 200
-#define NUM_CLUSTERS 3
+#define NUM_CLUSTERS 4
 #define ESPALHAMENTO 19
 #define ARQUIVO_PONTOS "pontos.csv"
 #define ARQUIVO_CENTROIDES "centroides.csv"
@@ -45,7 +45,7 @@ typedef struct {
 
 int main() {
 
-    printf("\n** K-MEANS COM PONTOS E CENTROIDES GERADOS ALEATORIAMENTE **\n");
+    printf("\n** K-MEANS COM PONTOS E CENTROIDES GERADOS ALEATORIAMENTE **\n\nAbertura - ");
 
     Point points[NUM_POINTS];
     Centroid centroids[NUM_CLUSTERS];
@@ -66,7 +66,7 @@ int main() {
     pausa();
 
     for (int iteration = 0; iteration < MAX_ITERATIONS; iteration++) {       
-        printf("\nRodada %d ", iteration+1);
+        printf("\nRodada %d - ", iteration+1);
 
         // Carrega dados dos arquivos csv
         carregaDados(points, centroids);
