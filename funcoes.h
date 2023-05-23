@@ -91,8 +91,15 @@ void carregaDados(Point points[], Centroid centroids[]) {
     fclose(centroides);    
 }
 
+// Pausa para visualização
+void pausa(){
+    printf("Pressione ENTER para continuar...");
+    while(getchar() != '\n');
+}
+
 // Associa os pontos aos centroides mais próximos
 void associaPontosaosCentroides(Point points[], Centroid centroids[]) {    
+    int final = 0;
     for (int i = 0; i < NUM_POINTS; i++) {
         double minDistance = INFINITY;
         int closestCentroid = 0;
@@ -105,8 +112,16 @@ void associaPontosaosCentroides(Point points[], Centroid centroids[]) {
         }
         if(points[i].cluster != closestCentroid){
             printf(".");
+            final = 1;
         }
         points[i].cluster = closestCentroid; // Altera o centroide associado ao ponto
+    }
+
+    // Quando não houve qualquer alteração de associação
+    if (final == 0){
+        printf("Estabilidade atingida. ");
+        pausa();
+        exit(0); // Finaliza com sucesso
     }
 }
 
@@ -134,12 +149,6 @@ void atualizaPosicaoCentroides(Point points[], Centroid centroids[]) {
             centroids[j].y = centroids[j].sumy / centroids[j].count;
         }
     }
-}
-
-// Pausa para visualização
-void pausa(){
-    printf("\n\nPressione ENTER para continuar...\n");
-    while(getchar() != '\n');
 }
 
 // Atualiza o arquivo dos pontos

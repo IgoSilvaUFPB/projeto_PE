@@ -1,14 +1,14 @@
-/*---------------------------------------------------------*/
-//Universidade Federal da Paraíba - UFPB
-//Curso: Ciência de Dados e Inteligência Artificial
-//Disciplina: Programação Estruturada
-//Projeto: Implementação do algoritmo K-Means na linguagem C
-//Equipe:
-// - DAVI NASIASENE AMORIM (20220056987)
-// - FRANCELINO TEOTONIO JUNIOR (20190035175)
-// - GUILHERME BARBOZA DE SOUSA (20220007418)
-// - IGÓ FERREIRA MELO SILVA (20220155214)
-/*---------------------------------------------------------*/
+/*------------------------------------------------------------*/
+/*          Universidade Federal da Paraíba - UFPB            */
+/*      Curso: Ciência de Dados e Inteligência Artificial     */
+/*            Disciplina: Programação Estruturada             */
+/* Projeto: Implementação do algoritmo K-Means na linguagem C */
+/* Equipe:                                                    */
+/* - DAVI NASIASENE AMORIM (20220056987)                      */
+/* - FRANCELINO TEOTONIO JUNIOR (20190035175)                 */
+/* - GUILHERME BARBOZA DE SOUSA (20220007418)                 */
+/* - IGÓ FERREIRA MELO SILVA (20220155214)                    */
+/*------------------------------------------------------------*/
 #include <stdio.h>
 #include "davi.h"
 #include "francelino.h"
@@ -45,6 +45,8 @@ typedef struct {
 
 int main() {
 
+    printf("\n** K-MEANS COM PONTOS E CENTROIDES GERADOS ALEATORIAMENTE **\n");
+
     Point points[NUM_POINTS];
     Centroid centroids[NUM_CLUSTERS];
 
@@ -64,7 +66,7 @@ int main() {
     pausa();
 
     for (int iteration = 0; iteration < MAX_ITERATIONS; iteration++) {       
-        printf("\nRodada %d", iteration+1);
+        printf("\nRodada %d ", iteration+1);
 
         // Carrega dados dos arquivos csv
         carregaDados(points, centroids);
