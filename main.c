@@ -4,7 +4,7 @@
 //Disciplina: Programação Estruturada
 //Projeto: Implementação do algoritmo K-Means na linguagem C
 //Equipe:
-// - DAVI NASIASENE AMORI (20220056987)
+// - DAVI NASIASENE AMORIM (20220056987)
 // - FRANCELINO TEOTONIO JUNIOR (20190035175)
 // - GUILHERME BARBOZA DE SOUSA (20220007418)
 // - IGÓ FERREIRA MELO SILVA (20220155214)
@@ -18,9 +18,10 @@
 #include <math.h>
 #include <time.h>
 
-#define MAX_ITERATIONS 10
+#define MAX_ITERATIONS 15
 #define NUM_POINTS 200
 #define NUM_CLUSTERS 3
+#define ESPALHAMENTO 19
 #define ARQUIVO_PONTOS "pontos.csv"
 #define ARQUIVO_CENTROIDES "centroides.csv"
 
@@ -44,11 +45,11 @@ typedef struct {
 
 int main() {
 
-    // Semente para geração de pontos e centroides
-    srand(time(NULL));    
-
     Point points[NUM_POINTS];
     Centroid centroids[NUM_CLUSTERS];
+
+    // Semente para geração de pontos e centroides
+    srand(time(NULL));    
 
     //Gera pontos
     criaPontos();
@@ -63,7 +64,8 @@ int main() {
     pausa();
 
     for (int iteration = 0; iteration < MAX_ITERATIONS; iteration++) {       
-        
+        printf("\nRodada %d", iteration+1);
+
         // Carrega dados dos arquivos csv
         carregaDados(points, centroids);
 

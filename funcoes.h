@@ -1,7 +1,5 @@
 #ifndef _FUNCOES_H_
-#define _FUNCOES_H_ 
-
-#define MAX_LINE_LENGTH 100
+#define _FUNCOES_H_
 
 // Plota o gráfico
 void plotagem(int iteration) {
@@ -20,6 +18,7 @@ void plotagem(int iteration) {
         return;
     }
 
+    // Define parâmetros de plotagem do gnuplot
     fprintf(gnuplotPipe, "set title 'Rodada %d'\n", iteration);
     fprintf(gnuplotPipe, "set xlabel 'X'\n");
     fprintf(gnuplotPipe, "set ylabel 'Y'\n");
@@ -44,17 +43,13 @@ void plotagem(int iteration) {
     }
     fprintf(gnuplotPipe, "e\n");
 
-    // Ler e plotar os rótulos dos centroides
+    // Lê e plota os rótulos dos centroides
     fprintf(gnuplotPipe, "# Rótulos dos Centroides\n");
     rewind(centroids);  // Volta ao início do arquivo de centroides
     while (fscanf(centroids, "%d,%f,%f,%d", &id, &x, &y, &count) == 4) {
         fprintf(gnuplotPipe, "%f %f %d %d\n", x, y, count, count);
     }
-    fprintf(gnuplotPipe, "e\n");
-
-    // Exibe o gráfico
-    fprintf(gnuplotPipe, "set palette defined (0 'red', 1 'blue', 2 'green', 3 'black' )\n");
-    fprintf(gnuplotPipe, "replot\n");
+    fprintf(gnuplotPipe, "e\n");    
 
     // Fecha os arquivos e o pipe do gnuplot
     fclose(points);
@@ -97,11 +92,10 @@ void carregaDados(Point points[], Centroid centroids[]) {
 }
 
 // Associa os pontos aos centroides mais próximos
-void associaPontosaosCentroides(Point points[], Centroid centroids[]) {
+void associaPontosaosCentroides(Point points[], Centroid centroids[]) {    
     for (int i = 0; i < NUM_POINTS; i++) {
         double minDistance = INFINITY;
         int closestCentroid = 0;
-
         for (int j = 0; j < NUM_CLUSTERS; j++) {
             double d = distancia(points[i], centroids[j]);
             if (d < minDistance) {
@@ -144,7 +138,7 @@ void atualizaPosicaoCentroides(Point points[], Centroid centroids[]) {
 
 // Pausa para visualização
 void pausa(){
-    printf("\nPressione ENTER para continuar...\n");
+    printf("\n\nPressione ENTER para continuar...\n");
     while(getchar() != '\n');
 }
 
@@ -154,8 +148,7 @@ void atualizaPontos (Point points[]){
     if (pontos == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
-    }     
-
+    }
     for (int i = 0; i < NUM_POINTS; i++) {
         fprintf(pontos, "%d,%lf,%lf,%d\n", points[i].id, points[i].x, points[i].y, points[i].cluster);
     }
@@ -169,7 +162,6 @@ void atualizaCentroides (Centroid centroids[]){
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
-
     for (int j = 0; j < NUM_CLUSTERS; j++) {
         fprintf(centroides, "%d,%lf,%lf,%d\n", centroids[j].id, centroids[j].x, centroids[j].y, centroids[j].count);
     }
@@ -194,17 +186,14 @@ void criaPontos() {
 
     // Gera pontos aleatóriamente
     Point points[NUM_POINTS];
-
     for (int i = 0; i < NUM_POINTS; i++) {
         int cluster = i % NUM_CLUSTERS;
-
         points[i].id = i;
-        float radius = (float)(rand() % 19);  // Ajustar o raio para controlar o espalhamento
-        float angle = (float)(rand() % 360) * 3.1415 / 180.0;  // Ângulo aleatório em radianos
-        
+        float radius = (float)(rand() % ESPALHAMENTO);  // Ajustar o raio para controlar o espalhamento
+        float angle = (float)(rand() % 360) * 3.1415 / 180.0;  // Ângulo aleatório em radianos        
         points[i].x = centroids[cluster].x + radius * cos(angle);
         points[i].y = centroids[cluster].y + radius * sin(angle);
-        points[i].cluster = 3;  // Centroide inicializa em 3
+        points[i].cluster = 0;  // Centroide associado inicializa em 0
     }
 
     // Salva pontos no CSV
@@ -223,7 +212,7 @@ void criaCentroides() {
         return;
     }
 
-    // Gere centroides
+    // Gera centroides aleatoriamente
     Centroid centroids[NUM_CLUSTERS];
     for (int i = 0; i < NUM_CLUSTERS; i++) {
         centroids[i].id = i + 1;
