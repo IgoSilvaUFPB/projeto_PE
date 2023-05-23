@@ -28,12 +28,8 @@ O K-means é amplamente utilizado em várias áreas, como análise de dados, min
 
 ---
 
-Funções necessárias:
+Download Gnuplot:
 
-- Uma função para gerar k centroides iniciais aleatoriamente ou usando algum método heurístico.
-- Uma função para calcular a distância entre um objeto e um centroide.
-- Uma função para atribuir cada objeto ao centroide mais próximo.
-- Uma função para recalcular os centroides como a média dos objetos atribuídos a eles.
-- Uma função para verificar se a atribuição dos objetos aos centroides mudou ou não.
-- Uma função para executar o algoritmo k-mean, chamando as funções anteriores e retornando os centroides finais e os grupos formados.
-- Uma função que gere um gráfico. 
+[Mirror 1](https://sourceforge.net/projects/gnuplot/files/gnuplot/)
+
+[Mirror 2](https://fossies.org/windows/misc/gp547-win64-mingw.exe/)
