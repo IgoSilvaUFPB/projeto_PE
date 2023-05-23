@@ -33,3 +33,11 @@ Download Gnuplot:
 [Mirror 1](https://sourceforge.net/projects/gnuplot/files/gnuplot/)
 
 [Mirror 2](https://fossies.org/windows/misc/gp547-win64-mingw.exe/)
+
+---
+
+Exemplos:
+
+![gif 1](https://github.com/IgoSilvaUFPB/projeto_PE/blob/40d4afc8bc30212fbc869098c8006489fdf95684/gif_1.gif)
+![gif 2](https://github.com/IgoSilvaUFPB/projeto_PE/blob/40d4afc8bc30212fbc869098c8006489fdf95684/gif_2.gif)
+![gif 3](https://github.com/IgoSilvaUFPB/projeto_PE/blob/40d4afc8bc30212fbc869098c8006489fdf95684/gif_3.gif)
