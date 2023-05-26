@@ -18,9 +18,9 @@
 #include <math.h>
 #include <time.h>
 
-#define MAX_ITERATIONS 15
-#define NUM_POINTS 200
-#define NUM_CLUSTERS 4
+#define MAX_ITERATIONS 30
+#define NUM_POINTS 300
+#define NUM_CLUSTERS 5
 #define ESPALHAMENTO 19
 #define ARQUIVO_PONTOS "pontos.csv"
 #define ARQUIVO_CENTROIDES "centroides.csv"
