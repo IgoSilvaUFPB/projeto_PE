@@ -10,10 +10,6 @@
 /* - IGÓ FERREIRA MELO SILVA (20220155214)                    */
 /*------------------------------------------------------------*/
 #include <stdio.h>
-#include "davi.h"
-#include "francelino.h"
-#include "guilherme.h"
-#include "igo.h"
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
@@ -47,6 +43,7 @@ int main() {
 
     printf("\n** K-MEANS COM PONTOS E CENTROIDES GERADOS ALEATORIAMENTE **\n\nAbertura - ");
 
+    // Definindo arrays de pontos e centroides
     Point points[NUM_POINTS];
     Centroid centroids[NUM_CLUSTERS];
 
