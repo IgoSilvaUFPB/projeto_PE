@@ -6,7 +6,7 @@
 
 ---
 
-Equipe:
+### Equipe:
 - DAVI NASIASENE AMORIM (20220056987)
 - FRANCELINO TEOTONIO JUNIOR (20190035175)
 - GUILHERME BARBOZA DE SOUSA (20220007418)
@@ -14,7 +14,7 @@ Equipe:
 
 ---
 
-O que é o K-means?
+### O que é o K-means?
 
 O algoritmo K-means é um método de aprendizado não supervisionado usado para agrupar dados em clusters. Ele busca dividir um conjunto de dados em grupos (clusters) com base em suas características ou similaridades.
 O algoritmo K-means funciona da seguinte maneira:
@@ -25,11 +25,11 @@ O algoritmo K-means funciona da seguinte maneira:
 
 
 O resultado final do algoritmo K-means é um conjunto de K clusters, cada um contendo pontos de dados semelhantes. Os centroides finais podem ser usados para classificar novos pontos de dados em clusters existentes.
-O K-means é amplamente utilizado em várias áreas, como análise de dados, mineração de dados, reconhecimento de padrões e aprendizado de máquina. Ele pode ajudar a identificar padrões, segmentar clientes, agrupar documentos e muito mais. No entanto, é importante lembrar que o K-means requer que o número de clusters (K) seja especificado antecipadamente e que pode haver sensibilidade à inicialização dos centroides.
+O K-means é amplamente utilizado em várias áreas, como análise de dados, mineração de dados, reconhecimento de padrões e aprendizado de máquina. Ele pode ajudar a identificar padrões, segmentar clientes, agrupar documentos e muito mais.
 
 ---
 
-Download Gnuplot:
+### Download Gnuplot
 
 [Mirror 1](https://sourceforge.net/projects/gnuplot/files/gnuplot/)
 
@@ -37,8 +37,20 @@ Download Gnuplot:
 
 ---
 
-Exemplos:
+### Exemplos
 
 ![gif 1](https://github.com/IgoSilvaUFPB/projeto_PE/blob/40d4afc8bc30212fbc869098c8006489fdf95684/gif_1.gif)
 ![gif 2](https://github.com/IgoSilvaUFPB/projeto_PE/blob/40d4afc8bc30212fbc869098c8006489fdf95684/gif_2.gif)
 ![gif 3](https://github.com/IgoSilvaUFPB/projeto_PE/blob/40d4afc8bc30212fbc869098c8006489fdf95684/gif_3.gif)
+
+---
+
+### Falhas oriundas da inicialização aleatória dos centroides
+
+ É importante lembrar que o K-means requer que o número de clusters (K) seja especificado antecipadamente e que pode haver sensibilidade à inicialização dos centroides.
+ 
+ Inicialização aleatória pode resultar em isolamento de centroide.
+ ![falha 1](https://github.com/IgoSilvaUFPB/projeto_PE/blob/07ed5070492f1ec3c182fbe79f94415994fc5b95/falha_1.png)
+ 
+ Inicialização aleatória pode resultar em má distribuição dos clusters
+ ![falha 2](https://github.com/IgoSilvaUFPB/projeto_PE/blob/07ed5070492f1ec3c182fbe79f94415994fc5b95/falha_2.png)
