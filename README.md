@@ -1,3 +1,4 @@
+![capa do projeto](https://github.com/IgoSilvaUFPB/projeto_PE/blob/9bc6b566ae4be943acf52bb9c41b110cd7031e98/capa_projeto_pe.png)
 # Universidade Federal da Paraíba - UFPB
 ## Curso: Ciência de Dados e Inteligência Artificial
 ## Disciplina: Programação Estruturada
