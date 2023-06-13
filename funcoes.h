@@ -189,8 +189,8 @@ void criaPontos() {
     Point centroids[NUM_CLUSTERS];
     for (int i = 0; i < NUM_CLUSTERS; i++) {
         centroids[i].id = i + 1;
-        centroids[i].x = (float)(rand() % 1000) / 10.0;  // Coordenadas de referência - x entre 0 e 100
-        centroids[i].y = (float)(rand() % 1000) / 10.0;  // Coordenadas de referência - y entre 0 e 100
+        centroids[i].x = (float)(rand() % 100);  // Coordenadas de referência - x entre 0 e 100
+        centroids[i].y = (float)(rand() % 100);  // Coordenadas de referência - y entre 0 e 100
     }
 
     // Gera pontos aleatóriamente
@@ -225,8 +225,8 @@ void criaCentroides() {
     Centroid centroids[NUM_CLUSTERS];
     for (int i = 0; i < NUM_CLUSTERS; i++) {
         centroids[i].id = i + 1;
-        centroids[i].x = (float)(rand() % 1000) / 10.0;  // Coordenadas x dos centroides entre 0 e 100
-        centroids[i].y = (float)(rand() % 1000) / 10.0;  // Coordenadas y dos centroides entre 0 e 100
+        centroids[i].x = (float)(rand() % 100);  // Coordenadas x dos centroides entre 0 e 100
+        centroids[i].y = (float)(rand() % 100);  // Coordenadas y dos centroides entre 0 e 100
         centroids[i].count = 0;
     }   
 
