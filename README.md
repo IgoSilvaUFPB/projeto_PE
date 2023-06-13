@@ -2,7 +2,9 @@
 # Universidade Federal da Paraíba - UFPB
 ## Curso: Ciência de Dados e Inteligência Artificial
 ## Disciplina: Programação Estruturada
-## Projeto: Implementação do algoritmo K-means na linguagem C
+## Professor: Vitor Meneguetti Ugulino de Araujo
+
+# Projeto: Implementação do algoritmo K-means na linguagem C
 
 ---
 
@@ -28,7 +30,26 @@
 
 ---
 
-### Gnuplot
+### Recursos empregados
+- Estruturas condicionais
+- Estruturas de repetição
+- Vetores
+- Ponteiros
+- Funções
+- Structs
+- Manipulação de arquivos
+
+---
+
+### Bibliotecas utilizadas
+- stdio
+- stdlib
+- math
+- time
+
+---
+
+### PLotagem dos gráficos - Gnuplot
 
 > O Gnuplot é um programa de visualização de dados e criação de gráficos.
 > 
