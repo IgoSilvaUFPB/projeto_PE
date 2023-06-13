@@ -49,7 +49,7 @@
 
 ---
 
-### PLotagem dos gráficos - Gnuplot
+### Plotagem dos gráficos - Gnuplot
 
 > O Gnuplot é um programa de visualização de dados e criação de gráficos.
 > 
